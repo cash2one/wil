@@ -8,11 +8,11 @@ import tornado.web
 
 class ImgHandler(tornado.web.RequestHandler):
     def get(self, dir):
-        self.render("images.html", dir=dir, files=os.listdir(os.path.join("bmp", dir)))
+        self.render("images.html", dir=dir, files=sorted(os.listdir(os.path.join("bmp", dir)[:1000])))
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html", dirs=os.listdir("bmp"))
+        self.render("index.html", dirs=sorted(os.listdir("bmp")[:1000]))
 
 HANDLERS = [
     (r"/", MainHandler),
