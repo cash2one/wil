@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import base64
 import struct
 import zlib
 
@@ -49,3 +48,11 @@ BMP_CS = 8
 
 with open("tpl_256", "rb") as f:
     tpl = list(bmp256_struct.unpack(f.read()))
+
+pack_whxy = struct.Struct(">hhhh").pack
+whxy_empty = pack_whxy(0,0,0,0)
+
+def deflated_save(bin, fn):
+    level = 1  # 1 is fastest, 9 is smallest
+    with open(fn, "wb") as f:
+        f.write(zlib.compress(bin, level)[2:-4])
