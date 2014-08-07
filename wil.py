@@ -34,17 +34,24 @@ def export(wil):
 
 
 
-def persist_to_bins(lst, dir, conf):
+def persist_to_bins(lst, dir, config=None):
     if not os.path.exists(dir):
         os.mkdir(dir)
     fmt_output = os.path.join(dir, "{}").format
-    for begin, end, name in conf:
-        data = []
-        for i in range(begin, end):
-            w, h, x, y, colors = lst[i]
-            data.append(pack_whxy(w, h, x, y))
-            data.append(colors)
-        deflated_save(b''.join(data), fmt_output(name))
+
+    if config is None:
+        for i, unit in enumerate(lst):
+            if unit:
+                w, h, x, y, colors = unit
+                deflated_save(pack_whxy(w, h, x, y) + colors, fmt_output(i))
+    else:
+        for begin, end, name in config:
+            data = []
+            for i in range(begin, end):
+                w, h, x, y, colors = lst[i]
+                data.append(pack_whxy(w, h, x, y))
+                data.append(colors)
+            deflated_save(b''.join(data), fmt_output(name))
 
 
 def persist_to_single_bin(lst, fn):
@@ -82,11 +89,14 @@ if __name__ == "__main__":
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
     import conf
-    persist_to_bins(export("../wil_files/Hum.wil"), "tmp/bodies", conf.bodies)
-    persist_to_bins(export("../wil_files/Hair.wil"), "tmp/hairs", conf.hairs)
-    persist_to_bins(export("../wil_files/Weapon.wil"), "tmp/weapons", conf.weapons)
-    persist_to_single_bin(export("../wil_files/DnItems.wil"), "tmp/items1")
-    persist_to_single_bin(export("../wil_files/Items.wil"), "tmp/items2")
-    persist_to_single_bin(export("../wil_files/StateItem.wil"), "tmp/items3")
-    persist_to_single_bin(export("../wil_files/MagIcon.wil"), "tmp/magic_icons")
-    persist_to_single_bin(export("../wil_files/Prguse.wil"), "tmp/ui")
+    persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
+    persist_to_bins(export("wil/Hair.wil"), "tmp/hairs", conf.hairs)
+    persist_to_bins(export("wil/Weapon.wil"), "tmp/weapons", conf.weapons)
+    persist_to_single_bin(export("wil/DnItems.wil"), "tmp/items1")
+    persist_to_single_bin(export("wil/Items.wil"), "tmp/items2")
+    persist_to_single_bin(export("wil/StateItem.wil"), "tmp/items3")
+    persist_to_single_bin(export("wil/MagIcon.wil"), "tmp/magic_icons")
+    persist_to_bins(export("wil/mmap.wil"), "tmp/maps")
+    persist_to_bins(export("wil/Tiles.wil"), "tmp/tiles")
+    persist_to_bins(export("wil/SmTiles.wil"), "tmp/tilesm")
+    persist_to_bins(filter(None, export("wil/Prguse.wil") + export("wil/Prguse2.wil")), "tmp/ui")
