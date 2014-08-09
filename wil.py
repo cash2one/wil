@@ -51,6 +51,7 @@ def persist_to_bins(lst, dir, config=None):
                 w, h, x, y, colors = lst[i]
                 data.append(pack_whxy(w, h, x, y))
                 data.append(colors)
+            data.append(b'\x00')
             deflated_save(b''.join(data), fmt_output(name))
 
 
@@ -83,13 +84,14 @@ def persist_bmp256(fn, w, h, x, y, colors):
 
 
 
-if __name__ == "__main__":
+def main():
     import sys
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
     import conf
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
+    return
     persist_to_bins(export("wil/Hair.wil"), "tmp/hairs", conf.hairs)
     persist_to_bins(export("wil/Weapon.wil"), "tmp/weapons", conf.weapons)
     persist_to_single_bin(export("wil/DnItems.wil"), "tmp/items1")
@@ -100,3 +102,6 @@ if __name__ == "__main__":
     persist_to_bins(export("wil/Tiles.wil"), "tmp/tiles")
     persist_to_bins(export("wil/SmTiles.wil"), "tmp/tilesm")
     persist_to_bins(filter(None, export("wil/Prguse.wil") + export("wil/Prguse2.wil")), "tmp/ui")
+
+if __name__ == "__main__":
+    main()
