@@ -45,13 +45,13 @@ def persist_to_bins(lst, dir, config=None):
                 w, h, x, y, colors = unit
                 deflated_save(pack_whxy(w, h, x, y) + colors, fmt_output(i))
     else:
-        for begin, end, name in config:
+        for begin, end, name, mode in config:
             data = []
             for i in range(begin, end):
                 w, h, x, y, colors = lst[i]
                 data.append(pack_whxy(w, h, x, y))
                 data.append(colors)
-            data.append(b'\x00')
+            data.append(mode)
             deflated_save(b''.join(data), fmt_output(name))
 
 
@@ -90,8 +90,9 @@ def main():
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
     import conf
-    persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
+    persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     return
+    persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
     persist_to_bins(export("wil/Hair.wil"), "tmp/hairs", conf.hairs)
     persist_to_bins(export("wil/Weapon.wil"), "tmp/weapons", conf.weapons)
     persist_to_single_bin(export("wil/DnItems.wil"), "tmp/items1")
