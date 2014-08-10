@@ -38,9 +38,26 @@ weapons = extract_human(1200, 60)
 magics = [
     (0, 10, "hqs00", BLEND_MODE_ADD),
     (170, 180, "hqs20", BLEND_MODE_ADD),
+    (200, 210, "zys00", BLEND_MODE_ADD),
+    (370, 380, "zys20", BLEND_MODE_ADD),
+    (250, 260, "sxyd00", BLEND_MODE_ADD),
+    (260, 270, "sxyd20", BLEND_MODE_ADD),
+    (400, 410, "dhq00", BLEND_MODE_ADD),
+    (570, 580, "dhq20", BLEND_MODE_ADD),
+    (600, 610, "sds00", BLEND_MODE_ADD),
+    (770, 780, "sds20", BLEND_MODE_ADD),
+    (610, 620, "sds01", BLEND_MODE_ADD),
+    (760, 770, "sds21", BLEND_MODE_ADD),
+    (900, 906, "kjhh00", BLEND_MODE_ADD),
 ] + [
     (i, i + 6, "hqs1{:x}".format((i - 10) // 10), BLEND_MODE_ADD)
     for i in range(10, 170, 10)
+] + [
+    (i, i + 6, "dhq1{:x}".format((i - 410) // 10), BLEND_MODE_ADD)
+    for i in range(410, 570, 10)
+] + [
+    (i, i + 6, "jgdy1{:x}".format((i - 970) // 20), BLEND_MODE_ADD)
+    for i in range(970, 1130, 20)
 ]
 
 if __name__ == "__main__":

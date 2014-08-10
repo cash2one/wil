@@ -53,6 +53,6 @@ pack_whxy = struct.Struct(">hhhh").pack
 whxy_empty = pack_whxy(0,0,0,0)
 
 def deflated_save(bin, fn):
-    level = 9  # 1 is fastest, 9 is smallest
+    level = 1  # 1 is fastest, 9 is smallest
     with open(fn, "wb") as f:
         f.write(zlib.compress(bin, level)[2:-4])
