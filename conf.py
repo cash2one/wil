@@ -93,6 +93,12 @@ magics = [
     for i in range(1160, 1320, 10)
 ]
 
+magics2 = [
+    (0, 10, "zhss00", BLEND_MODE_NORMAL),
+    (20, 23, "lds00", BLEND_MODE_ADD),
+    (10, 15, "lds20", BLEND_MODE_ADD),
+]
+
 if __name__ == "__main__":
     print(len(bodies))
     print(len(hairs))

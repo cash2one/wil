@@ -91,6 +91,7 @@ def main():
 
     import conf
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
+    persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
     return
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
     persist_to_bins(export("wil/Hair.wil"), "tmp/hairs", conf.hairs)
