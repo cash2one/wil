@@ -15,14 +15,14 @@ human_steps = [
 ]
 
 HUMAN_DIRECTION = 8
-BLEND_MODE_NORMAL = b'\x00'
+BLEND_MODE_NORMAL = b''
 BLEND_MODE_ADD = b'\x01'
 
 nameit = "{}{:x}".format
 def extract_human(i, n):
     mode = BLEND_MODE_NORMAL
     lst = []
-    id = i//1200
+    id = i//1200 * 22
     for _ in range(n):
         for j, k in human_steps:
             for d in range(HUMAN_DIRECTION):
