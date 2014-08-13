@@ -40,18 +40,17 @@ def persist_to_bins(lst, dir, config=None):
     fmt_output = os.path.join(dir, "{}").format
 
     if config is None:
-        for i, unit in enumerate(lst):
-            if unit:
-                w, h, x, y, colors = unit
+        for i, x in enumerate(lst):
+            if x:
+                w, h, x, y, colors = x
                 deflated_save(pack_whxy(w, h, x, y) + colors, fmt_output(i))
     else:
-        for begin, end, name, mode in config:
+        for begin, end, name in config:
             data = []
             for i in range(begin, end):
                 w, h, x, y, colors = lst[i]
                 data.append(pack_whxy(w, h, x, y))
                 data.append(colors)
-            data.append(mode)
             deflated_save(b''.join(data), fmt_output(name))
 
 
