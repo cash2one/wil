@@ -103,6 +103,13 @@ def main():
     persist_to_bins(export("wil/Tiles.wil"), "tmp/tiles")
     persist_to_bins(export("wil/SmTiles.wil"), "tmp/tilesm")
     persist_to_bins(filter(None, export("wil/Prguse.wil") + export("wil/Prguse2.wil")), "tmp/ui")
+    persist_to_bins(export("wil/Objects.wil"), "tmp/objs0")
+    persist_to_bins(export("wil/Objects2.wil"), "tmp/objs1")
+    persist_to_bins(export("wil/Objects3.wil"), "tmp/objs2")
+    persist_to_bins(export("wil/Objects4.wil"), "tmp/objs3")
+    persist_to_bins(export("wil/Objects5.wil"), "tmp/objs4")
+    persist_to_bins(export("wil/Objects6.wil"), "tmp/objs5")
+    persist_to_bins(export("wil/Objects7.wil"), "tmp/objs6")
 
 
 if __name__ == "__main__":
