@@ -30,7 +30,7 @@ def extract_human(i, n):
 
 bodies = extract_human(0, 12)
 hairs = extract_human(1200, 4)
-weapons = extract_human(1200, 60)
+weapons = extract_human(1200, 50)  # 50+ have problem
 
 magics = [
     (0, 10, "hqs00"),

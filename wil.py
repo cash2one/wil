@@ -89,7 +89,7 @@ def main():
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
     import conf
-    #return
+    return
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
