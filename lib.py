@@ -3,7 +3,7 @@
 import struct
 import zlib
 
-head_struct = struct.Struct(
+struct_head = struct.Struct(
     "<"       # little-endian
     "44s"     # title
     "i"       # image_count
@@ -12,10 +12,10 @@ head_struct = struct.Struct(
     "1024s"   # pallette
     )
 
-assert head_struct.size == 1080
+assert struct_head.size == 1080
 
 
-image_struct = struct.Struct(
+struct_image = struct.Struct(
     "<"       # little-endian
     "h"       # width
     "h"       # height
@@ -23,15 +23,15 @@ image_struct = struct.Struct(
     "h"       # py
     )
 
-assert image_struct.size == 8
+assert struct_image.size == 8
 
 
-bmp256_struct = struct.Struct(
+struct_bmp256 = struct.Struct(
     "<"       # little-endian
     "2s"      # "BM"
     "i"       # file_size = colors_pos + colors_size
     "4s"      # unknown
-    "i"       # colors_pos == bmp256_struct.size == 1078
+    "i"       # colors_pos == struct_bmp256.size == 1078
     "i"       # unknown == 40 ???
     "i"       # width
     "i"       # height
@@ -47,7 +47,7 @@ BMP_S = 1
 BMP_CS = 8
 
 with open("tpl_256", "rb") as f:
-    tpl = list(bmp256_struct.unpack(f.read()))
+    tpl = list(struct_bmp256.unpack(f.read()))
 
 pack_whxy = struct.Struct(">hhhh").pack
 whxy_empty = pack_whxy(0,0,0,0)

@@ -3,7 +3,9 @@
 import os
 import os.path
 import struct
+import sys
 
+import conf
 from lib import *
 
 def export(wil):
@@ -11,18 +13,18 @@ def export(wil):
     with open(wil, "rb") as f:
         wil_chunk = f.read()
 
-    head = head_struct.unpack(wil_chunk[:head_struct.size])
+    head = struct_head.unpack(wil_chunk[:struct_head.size])
     image_count = head[1]
     print(image_count, len(wil_chunk))
 
     pics = []
 
-    pos = head_struct.size
+    pos = struct_head.size
 
     for i in range(image_count):
-        pos_c = pos + image_struct.size
-        w, h, x, y = image_struct.unpack(wil_chunk[pos:pos_c])
-        pos += image_struct.size + w * h
+        pos_c = pos + struct_image.size
+        w, h, x, y = struct_image.unpack(wil_chunk[pos:pos_c])
+        pos += struct_image.size + w * h
         #print(i, len(wil_chunk[pos_c:pos_c + w * h]), w, h, x, y)
         if h > 1:
             assert w % 4 == 0, (i, w)
@@ -77,18 +79,16 @@ def persist_bmps(lst, dir):
 
 def persist_bmp256(fn, w, h, x, y, colors):
     tpl[BMP_W], tpl[BMP_H], tpl[BMP_CS] = w, h, w * h
-    tpl[BMP_S] = bmp256_struct.size + tpl[BMP_CS]
+    tpl[BMP_S] = struct_bmp256.size + tpl[BMP_CS]
     with open(fn, "wb") as f:
-        f.write(bmp256_struct.pack(*tpl) + colors)
+        f.write(struct_bmp256.pack(*tpl) + colors)
 
 
 
 def main():
-    import sys
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
-    import conf
     return
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
