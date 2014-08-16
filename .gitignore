@@ -54,6 +54,8 @@ docs/_build/
 
 # wil files
 *.wil
+.*
 bmp
 tmp
 wil
+map

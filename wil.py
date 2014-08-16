@@ -89,7 +89,7 @@ def main():
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
-    return
+    #return
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
@@ -103,13 +103,13 @@ def main():
     persist_to_bins(export("wil/Tiles.wil"), "tmp/tiles")
     persist_to_bins(export("wil/SmTiles.wil"), "tmp/tilesm")
     persist_to_bins(filter(None, export("wil/Prguse.wil") + export("wil/Prguse2.wil")), "tmp/ui")
-    persist_to_bins(export("wil/Objects.wil"), "tmp/objs0")
-    persist_to_bins(export("wil/Objects2.wil"), "tmp/objs1")
-    persist_to_bins(export("wil/Objects3.wil"), "tmp/objs2")
-    persist_to_bins(export("wil/Objects4.wil"), "tmp/objs3")
-    persist_to_bins(export("wil/Objects5.wil"), "tmp/objs4")
-    persist_to_bins(export("wil/Objects6.wil"), "tmp/objs5")
-    persist_to_bins(export("wil/Objects7.wil"), "tmp/objs6")
+    persist_to_bins(export("wil/Objects.wil"), "tmp/objs1")
+    persist_to_bins(export("wil/Objects2.wil"), "tmp/objs2")
+    persist_to_bins(export("wil/Objects3.wil"), "tmp/objs3")
+    persist_to_bins(export("wil/Objects4.wil"), "tmp/objs4")
+    persist_to_bins(export("wil/Objects5.wil"), "tmp/objs5")
+    persist_to_bins(export("wil/Objects6.wil"), "tmp/objs6")
+    persist_to_bins(export("wil/Objects7.wil"), "tmp/objs7")
 
 
 if __name__ == "__main__":
