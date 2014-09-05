@@ -2,6 +2,7 @@
 
 import array
 import collections
+import pprint
 import struct
 import sys
 
@@ -27,7 +28,8 @@ struct_map_tile = struct.Struct(
 )
 
 struct_w_h = struct.Struct(">HH")
-mask_block = 0x8000
+mask_short = 0x7fff
+mask_byte = 0x7f
 
 def get_map(map_file):
     with open(map_file, "rb") as f:
@@ -37,7 +39,7 @@ def get_map(map_file):
     N = struct_map_tile.size
     cursor = struct_map_head.size
 
-    assert len(data[cursor:]) == W * H * N, (W, H, len(data))
+    assert len(data[cursor:]) >= W * H * N, (W, H, N, len(data))
 
     map_struct = [[] for _ in range(H)]
     for w in range(W):
@@ -50,7 +52,7 @@ def get_map(map_file):
 
 
 def print_map(m):
-    mask = mask_block
+    mask = mask_short + 1
     chars = [" ", "-", "|", "+"]
     for row in m:
         for t in row:
@@ -60,7 +62,7 @@ def print_map(m):
 
 
 def map_mask(m):
-    mask = mask_block
+    mask = mask_short + 1
     arr = array.array("B", (
         bool(t[0] & mask) + (bool(t[2] & mask) << 1)
         for row in m
@@ -70,17 +72,15 @@ def map_mask(m):
 
 
 def map_ground(m):
-    mask = mask_block - 1
     pack = struct.Struct(">H").pack
-    lst = [t[0] & mask for row in m[::2] for t in row[::2]]
+    lst = [t[0] & mask_short for row in m[::2] for t in row[::2]]
     return struct_w_h.pack(len(m[0]), len(m)) + b''.join(map(pack, lst))
 
 
 def map_middle(m):
     w, h = len(m[0]), len(m)
-    mask = mask_block - 1
     pack = struct.Struct(">IB").pack
-    lst = [t[1] & mask for row in m for t in row]
+    lst = [t[1] & mask_short for row in m for t in row]
     l = [pack(idx, i) for idx, i in enumerate(lst) if 0 < i < 255]
     #print(max(lst))
     #print(len(lst))
@@ -90,29 +90,35 @@ def map_middle(m):
 
 def map_objects(m):
     w, h = len(m[0]), len(m)
-    mask = mask_block - 1
     pack = struct.Struct(">IBH").pack
-    lst = [(t[7], t[2] & mask) for row in m for t in row]
-    l = [pack(idx, i, j) for idx, (i, j) in enumerate(lst) if j]
+    lst = [(t[7], t[2] & mask_short, t[5]) for row in m for t in row]
+    l = [pack(idx, i, j) for idx, (i, j, ani) in enumerate(lst) if j and i < 32 and not ani]
     return struct_w_h.pack(w, h) + b''.join(l)
+
+
+def map_animations(m):
+    w, h = len(m[0]), len(m)
+    mask1 = mask_byte + 1
+    lst = [(t[7], t[2] & mask_short, t[5]) for row in m for t in row]
+    l = [(i, j, ani & mask_byte, bool(ani & mask1)) for idx, (i, j, ani) in enumerate(lst) if j > 16 and i < 32 and ani]
+    pprint.pprint(set(l))
 
 
 def map_doors(m):
     "TODO"
     w, h = len(m[0]), len(m)
-    mask = 0x7f
     pack = struct.Struct(">IBH").pack
-    lst = [(t[3], t[4]) for row in m for t in row if t[4]]
-    print(lst)
 
-    lst = [(t[7], t[3] & mask) for row in m for t in row]
-    l = [pack(idx, i, j) for idx, (i, j) in enumerate(lst) if 0 < j < 255]#todo
-    return struct_w_h.pack(w, h) + b''.join(l)
+    lst = [(t[7], t[2]&0x7fff, t[3], t[4]&0xff) for row in m for t in row if t[4]]
+    print(lst)
 
 
 def main():
     for fn in sys.argv[1:]:
+        print(fn)
         m = get_map(fn)
+        map_animations(m)
+        continue
         with open('objects.bin', 'wb') as f:
             f.write(map_objects(m))
         with open('mask.bin', 'wb') as f:
