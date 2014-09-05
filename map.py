@@ -3,8 +3,11 @@
 import array
 import collections
 import pprint
+import json
 import struct
 import sys
+import os
+import os.path
 
 
 struct_map_head = struct.Struct(
@@ -96,12 +99,17 @@ def map_objects(m):
     return struct_w_h.pack(w, h) + b''.join(l)
 
 
+anis = set()
 def map_animations(m):
     w, h = len(m[0]), len(m)
     mask1 = mask_byte + 1
     lst = [(t[7], t[2] & mask_short, t[5]) for row in m for t in row]
-    l = [(i, j, ani & mask_byte, bool(ani & mask1)) for idx, (i, j, ani) in enumerate(lst) if j > 16 and i < 32 and ani]
-    pprint.pprint(set(l))
+    #l = [(i, j, ani & mask_byte, bool(ani & mask1)) for idx, (i, j, ani) in enumerate(lst) if j > 16 and i < 32 and ani]
+    #pprint.pprint(set(l))
+    #anis.update(l)
+    d = {idx: (i, j, ani & mask_byte, bool(ani & mask1)) for idx, (i, j, ani) in enumerate(lst) if j > 16 and i < 32 and ani}
+    d["w"], d["h"] = w, h
+    return json.dumps(d, separators=(",", ":"))
 
 
 def map_doors(m):
@@ -113,21 +121,27 @@ def map_doors(m):
     print(lst)
 
 
+def convert(map_file):
+    name = os.path.join("tmp", "map", os.path.basename(os.path.splitext(map_file)[0]))
+    print(name)
+    m = get_map(map_file)
+    with open(name + ".animations", "w") as f:
+        f.write(map_animations(m))
+    with open(name + ".objects", "wb") as f:
+        f.write(map_objects(m))
+    with open(name + ".mask", "wb") as f:
+        f.write(map_mask(m))
+    with open(name + ".ground", "wb") as f:
+        f.write(map_ground(m))
+    with open(name + ".middle", "wb") as f:
+        f.write(map_middle(m))
+
+
 def main():
     for fn in sys.argv[1:]:
-        print(fn)
-        m = get_map(fn)
-        map_animations(m)
-        continue
-        with open('objects.bin', 'wb') as f:
-            f.write(map_objects(m))
-        with open('mask.bin', 'wb') as f:
-            f.write(map_mask(m))
-        with open('ground.bin', 'wb') as f:
-            f.write(map_ground(m))
-        with open('middle.bin', 'wb') as f:
-            f.write(map_middle(m))
+        convert(fn)
 
 
 if __name__ == "__main__":
     main()
+    #pprint.pprint(anis)
