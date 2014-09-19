@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
 monster_template_1 = [
-    (0, 8, 4),  # idle
-    (1, 8, 6),  # walk
-    (2, 8, 6),  # attack
-    (3, 2, 2),  # hurt
-    (4, 8, 4),  # die
+    (0, 0, 8),  # idle
+    (1, 64, 8),  # walk
+    (2, 128, 8),  # attack
+    (3, 192, 2),  # hurt
+    (4, 208, 8),  # die
+]
+
+monster_template_2 = [
+    (0, 0, 10),  # idle
+    (1, 80, 10),  # walk
+    (2, 160, 10),  # attack
+    (3, 240, 2),  # hurt
+    (4, 260, 10),  # die
 ]
 
 human_steps = [
@@ -25,13 +33,14 @@ human_steps = [
 DIRECTIONS = 8
 
 
-def render_monster(id, n, tpl, tpl_mask=(True, True, True, True, True)):
+def render_monster(name, start, tpl, tpl_mask=(True, True, True, True, True, False, False, False)):
     lst = []
     for i, j, k in tpl:
+        j += start
         for d in range(DIRECTIONS):
             if tpl_mask[i]:
-                lst.append((n, n + k, "{}{}{:x}".format(id, i, d)))
-            n += j
+                lst.append((j, j + k, "{}{}{:x}".format(name, i, d)))
+            j += k
     return lst
 
 
@@ -118,8 +127,36 @@ magics2 = [
 
 monsters = {
     "Mon1": (
-        render_monster(12, 280, monster_template_1) +
-        render_monster(13, 0, monster_template_1, (1,1,1,0,0))
+        render_monster("g1", 0, monster_template_1, (1,1,1,0,0)) +
+        render_monster("xr", 280, monster_template_1) +
+        render_monster("g2", 560, monster_template_1, (1,0,1,0,0)) +
+        render_monster("football", 840, monster_template_1, (1,1,0,0,0)) +
+        []
+    ),
+    "Mon3": (
+        render_monster("kl1", 0, monster_template_2) +
+        render_monster("kl2", 360, monster_template_2) +
+        render_monster("kl3", 720, monster_template_2) +
+        render_monster("kl4", 1080, monster_template_2) +
+        render_monster("dq", 1440, monster_template_2) +
+        render_monster("dgm", 1800, monster_template_2) +
+        render_monster("dpm", 2160, monster_template_2) +
+        render_monster("dcr", 2520, monster_template_2) +
+        render_monster("dz", 2880, monster_template_2) +
+        render_monster("sc", 3240, monster_template_2) +
+        []
+    ),
+    "Mon4": (
+        render_monster(40, 0, monster_template_2) +
+        render_monster(41, 360, monster_template_2) +
+        render_monster(42, 720, monster_template_2) +
+        render_monster(43, 1080, monster_template_2) +
+        render_monster(44, 1440, monster_template_2) +
+        render_monster(46, 2160, monster_template_2) +
+        render_monster(47, 2520, monster_template_2) +
+        render_monster(48, 2880, monster_template_2) +
+        render_monster(49, 3240, monster_template_2) +
+        []
     ),
 }
 

@@ -49,6 +49,8 @@ def persist_to_bins(lst, dir, config=None):
         for begin, end, name in config:
             data = []
             for i in range(begin, end):
+                if lst[i] is None:
+                    break
                 w, h, x, y, colors = lst[i]
                 data.append(pack_whxy(w, h, x, y))
                 data.append(colors)
