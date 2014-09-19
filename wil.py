@@ -35,7 +35,6 @@ def export(wil):
     return pics
 
 
-
 def persist_to_bins(lst, dir, config=None):
     if not os.path.exists(dir):
         os.mkdir(dir)
@@ -89,7 +88,9 @@ def main():
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
-    #return
+    for k, v in conf.monsters.items():
+        persist_to_bins(export("wil/{}.wil".format(k)), "tmp/monsters", v)
+    return
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)

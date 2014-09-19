@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+monster_template_1 = [
+    (0, 8, 4),  # idle
+    (1, 8, 6),  # walk
+    (2, 8, 6),  # attack
+    (3, 2, 2),  # hurt
+    (4, 8, 4),  # die
+]
+
 human_steps = [
     (8, 4),  # idle
     (8, 6),  # walk
@@ -14,23 +22,34 @@ human_steps = [
     (8, 4),  # die
 ]
 
-HUMAN_DIRECTION = 8
+DIRECTIONS = 8
 
-nameit = "{}{:x}".format
-def extract_human(i, n):
+
+def render_monster(id, n, tpl, tpl_mask=(True, True, True, True, True)):
+    lst = []
+    for i, j, k in tpl:
+        for d in range(DIRECTIONS):
+            if tpl_mask[i]:
+                lst.append((n, n + k, "{}{}{:x}".format(id, i, d)))
+            n += j
+    return lst
+
+
+def render_human(i, n):
     lst = []
     id = i//1200 * 22
     for _ in range(n):
         for j, k in human_steps:
-            for d in range(HUMAN_DIRECTION):
-                lst.append((i, i + k, nameit(id, d)))
+            for d in range(DIRECTIONS):
+                lst.append((i, i + k, "{}{:x}".format(id, d)))
                 i += j
             id += 1
     return lst
 
-bodies = extract_human(0, 12)
-hairs = extract_human(1200, 4)
-weapons = extract_human(1200, 50)  # 50+ have problem
+
+bodies = render_human(0, 12)
+hairs = render_human(1200, 4)
+weapons = render_human(1200, 50)  # 50+ have problem
 
 magics = [
     (0, 10, "hqs00"),
@@ -96,7 +115,16 @@ magics2 = [
     (10, 15, "lds20"),
 ]
 
+
+monsters = {
+    "Mon1": (
+        render_monster(12, 280, monster_template_1) +
+        render_monster(13, 0, monster_template_1, (1,1,1,0,0))
+    ),
+}
+
 if __name__ == "__main__":
+    print(monsters)
     print(len(bodies))
     print(len(hairs))
     print(len(weapons))
