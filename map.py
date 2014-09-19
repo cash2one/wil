@@ -9,6 +9,7 @@ import sys
 import os
 import os.path
 
+from lib import deflated_save
 
 struct_map_head = struct.Struct(
     "<"       # little-endian
@@ -127,14 +128,10 @@ def convert(map_file):
     m = get_map(map_file)
     with open(name + ".animations", "w") as f:
         f.write(map_animations(m))
-    with open(name + ".objects", "wb") as f:
-        f.write(map_objects(m))
-    with open(name + ".mask", "wb") as f:
-        f.write(map_mask(m))
-    with open(name + ".ground", "wb") as f:
-        f.write(map_ground(m))
-    with open(name + ".middle", "wb") as f:
-        f.write(map_middle(m))
+    deflated_save(map_objects(m), name + ".objects")
+    deflated_save(map_mask(m), name + ".mask")
+    deflated_save(map_ground(m), name + ".ground")
+    deflated_save(map_middle(m), name + ".middle")
 
 
 def main():
