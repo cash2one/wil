@@ -8,12 +8,23 @@ monster_template_1 = [
     (4, 208, 8),  # die
 ]
 
+#e_attack 5
+#e_die 6
+#e_appear 7
+#e_disappear 8
+
 monster_template_2 = [
     (0, 0, 10),  # idle
     (1, 80, 10),  # walk
     (2, 160, 10),  # attack
     (3, 240, 2),  # hurt
     (4, 260, 10),  # die
+]
+
+monster_template_3 = [
+    (2, 0, 10),  # attack
+    (3, 80, 2),  # hurt
+    (4, 100, 10),  # die
 ]
 
 human_steps = [
@@ -133,6 +144,14 @@ monsters = {
         render_monster("football", 840, monster_template_1, (1,1,0,0,0)) +
         []
     ),
+    "Mon2": (
+        render_monster("srh", 30, monster_template_3) +
+        [
+            (0, 10, "srh00"),
+            (10, 20, "srh70"),
+            (20, 30, "srh80"),
+        ]
+    ),
     "Mon3": (
         render_monster("kl1", 0, monster_template_2) +
         render_monster("kl2", 360, monster_template_2) +
@@ -156,6 +175,29 @@ monsters = {
         render_monster(47, 2520, monster_template_2) +
         render_monster(48, 2880, monster_template_2) +
         render_monster(49, 3240, monster_template_2) +
+        []
+    ),
+    "Mon5": (
+        render_monster(50, 0, monster_template_2) +
+        render_monster(51, 720, monster_template_2) +
+        render_monster(52, 1080, monster_template_2) +
+        render_monster(53, 1440, monster_template_2) +
+        render_monster(54, 1800, monster_template_2) +
+        render_monster(55, 2160, monster_template_2) +
+        render_monster(57, 2520, monster_template_2) +
+        render_monster(58, 2880, monster_template_2) +
+        render_monster(59, 3240, monster_template_2) +
+        []
+    ),
+    "Mon6": (
+        render_monster(60, 0, monster_template_2) +
+        render_monster(61, 430, monster_template_2) +
+        render_monster(62, 860, monster_template_2) +
+        render_monster(63, 1290, monster_template_2) +
+        []
+    ),
+    "Mon7": (
+        render_monster(70, 520, monster_template_2) +
         []
     ),
 }
