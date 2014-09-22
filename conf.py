@@ -200,10 +200,24 @@ monsters = {
         render_monster(70, 520, monster_template_2) +
         []
     ),
+    "Mon15": [
+        (0, 10, 11100),
+        (10, 20, 11120),
+        (50, 52, 11130),
+        (60, 70, 11140),
+        (100, 110, 11150),
+        (70, 80, 11170),
+        (80, 90, 11180),
+    ],
+    "Mon17": (
+        render_monster(0, 0, monster_template_2) +
+        render_monster(1, 360, monster_template_2) +
+        []
+    ),
 }
 
 if __name__ == "__main__":
-    print(monsters)
+    print(monsters["Mon17"])
     print(len(bodies))
     print(len(hairs))
     print(len(weapons))
