@@ -2,11 +2,11 @@
 
 import os
 import os.path
-import struct
 import sys
 
 import conf
 from lib import *
+
 
 def export(wil):
     assert wil.endswith(".wil")
@@ -85,7 +85,6 @@ def persist_bmp256(fn, w, h, x, y, colors):
         f.write(struct_bmp256.pack(*tpl) + colors)
 
 
-
 def main():
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
@@ -105,7 +104,7 @@ def main():
     persist_to_bins(export("wil/mmap.wil"), "tmp/maps")
     persist_to_bins(export("wil/Tiles.wil"), "tmp/tiles")
     persist_to_bins(export("wil/SmTiles.wil"), "tmp/tilesm")
-    persist_to_bins(filter(None, export("wil/Prguse.wil") + export("wil/Prguse2.wil")), "tmp/ui")
+    persist_to_bins(export("wil/Prguse.wil"), "tmp/ui")
     persist_to_bins(export("wil/Objects.wil"), "tmp/objs1")
     persist_to_bins(export("wil/Objects2.wil"), "tmp/objs2")
     persist_to_bins(export("wil/Objects3.wil"), "tmp/objs3")
