@@ -13,6 +13,8 @@
             },
             "87": {
                 "page": "skills"
+            },
+            "69": {
             }
         },
         "hidden": true,
@@ -25,7 +27,7 @@
     "statusClose": {
         "visibleOnClickOnly": true,
         "father": "status",
-        "command": {
+        "commands": {
             "status": {
                 "visible": false
             }
@@ -36,7 +38,7 @@
     "statusPageUp": {
         "father": "status",
         "visibleOnClickOnly": true,
-        "command": {
+        "commands": {
             "status": {
                 "pageSwitch": -1
             }
@@ -47,7 +49,7 @@
     "statusPageDown": {
         "father": "status",
         "visibleOnClickOnly": true,
-        "command": {
+        "commands": {
             "status": {
                 "pageSwitch": 1
             }
