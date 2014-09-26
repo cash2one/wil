@@ -1,0 +1,90 @@
+{
+    "main": {
+        "x": 0,
+        "y": 349,
+        "res": 1
+    },
+
+
+    "status": {
+        "hotkeys": {
+            "81": {
+                "page": "equipmentsM"
+            },
+            "87": {
+                "page": "skills"
+            }
+        },
+        "hidden": true,
+        "draggable": true,
+        "page": "points",
+        "pages": ["equipmentsM", "equipmentsW", "points", "skills"],
+        "x": 540, "y": 20, "res": 370
+    },
+
+    "statusClose": {
+        "visibleOnClickOnly": true,
+        "father": "status",
+        "command": {
+            "status": {
+                "visible": false
+            }
+        },
+        "x": 8, "y": 39, "res": 371
+    },
+
+    "statusPageUp": {
+        "father": "status",
+        "visibleOnClickOnly": true,
+        "command": {
+            "status": {
+                "pageSwitch": -1
+            }
+        },
+        "x": 7, "y": 128, "res": 373
+    },
+
+    "statusPageDown": {
+        "father": "status",
+        "visibleOnClickOnly": true,
+        "command": {
+            "status": {
+                "pageSwitch": 1
+            }
+        },
+        "x": 7, "y": 187, "res": 372
+    },
+
+
+    "equipmentsM": {
+        "x": 38, "y": 52, "res": 376
+    },
+
+
+    "equipmentsW": {
+        "x": 38, "y": 52, "res": 377
+    },
+
+
+    "points": {
+        "x": 38, "y": 52, "res": 382
+    },
+
+
+    "skills": {
+        "x": 38, "y": 52, "res": 383
+    },
+
+    "skillsPageUp": {
+        "father": "skills",
+        "resOnClick": 399,
+        "x": 176, "y": 60, "res": 398
+    },
+
+    "skillsPageDown": {
+        "father": "skills",
+        "resOnClick": 397,
+        "x": 176, "y": 94, "res": 396
+    }
+
+}
