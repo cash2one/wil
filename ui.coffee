@@ -72,7 +72,15 @@ bagClose:
         bag:
             visible: false
 
-gold:
+bagUse:
+    res: 26
+    dummyRes: true
+    resOnClick: 26
+    x: 254
+    y: 183
+    father: "bag"
+
+bagGold:
     res: 27
     dummyRes: true
     x: 10
@@ -81,7 +89,7 @@ gold:
     page: "gold1"
     pages: ["gold1", "gold2", "gold3"]
     commands:  # test switch gold
-        gold:
+        bagGold:
             pageSwitch: +1
 
 gold1:
@@ -193,6 +201,61 @@ equipmentsM:
     res: 376
 equipmentsW:
     res: 377
+
+
+hpmp:
+    x: 38
+    y: 90
+    father: "main"
+    page: "hpBallEmpty"
+    pages: ["hpBallEmpty", "hpmpBallEmpty"]
+    commands:
+        hpmp:
+            pageSwitch: +1
+
+hpBallEmpty:
+    res: 5
+
+hpBallHpFull:
+    res: 6
+    father: "hpBallEmpty"
+
+hpmpBallEmpty:
+    res: 4
+    dummyRes: true
+    x: 2
+    y: 1
+
+hpmpBallHpFull:
+    res: 4
+    resRect: [0, 0, 0.5, 1]
+    father: "hpmpBallEmpty"
+
+hpmpBallMpFull:
+    res: 4
+    resRect: [0.5, 0, 0.5, 1]
+    father: "hpmpBallEmpty"
+
+
+lv:
+    res: 30
+    x: 665
+    y: 147
+    father: "main"
+
+
+exp:
+    res: 7
+    x: 665
+    y: 178
+    father: "main"
+
+
+weight:
+    res: 7
+    x: 665
+    y: 210
+    father: "main"
 
 
 
