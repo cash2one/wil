@@ -219,8 +219,8 @@ hpBallEmpty:
 hpBallHpFull:
     res: 6
     father: "hpBallEmpty"
-    model: "hpRate"
-    controller: "ctrlY"
+    model: "hp"
+    controller: "ctrlRateMaxY"
 
 hpmpBallEmpty:
     res: 4
@@ -232,15 +232,15 @@ hpmpBallHpFull:
     res: 4
     resRect: [0, 0, 0.5, 1]
     father: "hpmpBallEmpty"
-    model: "hpRate"
-    controller: "ctrlY"
+    model: "hp"
+    controller: "ctrlRateMaxY"
 
 hpmpBallMpFull:
     res: 4
     resRect: [0.5, 0, 0.5, 1]
     father: "hpmpBallEmpty"
-    model: "mpRate"
-    controller: "ctrlY"
+    model: "mp"
+    controller: "ctrlRateMaxY"
 
 
 lv:
@@ -255,8 +255,15 @@ exp:
     x: 665
     y: 178
     father: "main"
-    model: "expRate"
-    controller: "ctrlW"
+    model: "exp"
+    controller: "ctrlRateMaxW"
+    texts: [
+        src: "经验: {0}"
+        model: "exp"
+        formatter: "currency"
+        x: 0
+        y: 0
+    ]
 
 
 weight:
@@ -264,10 +271,11 @@ weight:
     x: 665
     y: 210
     father: "main"
-    model: "weightRate"
-    controller: "ctrlW"
+    model: "weight"
+    controller: "ctrlRateMaxW"
 
 
 
-console.log(JSON.stringify(config))  # usage: ./ui.coffee >ui.json
+print = console.log.bind(console)
+print(JSON.stringify(config))  # usage: ./ui.coffee >ui.json
 # END
