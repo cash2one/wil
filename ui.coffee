@@ -14,7 +14,7 @@ equipButton:
     x: 643
     y: 61
     father: "main"
-    commands:
+    click:
         status:
             switchBoolean: "visible"
             page: "equipments"
@@ -26,7 +26,7 @@ bagButton:
     x: 682
     y: 41
     father: "main"
-    commands:
+    click:
         bag:
             switchBoolean: "visible"
 
@@ -37,7 +37,7 @@ skillButton:
     x: 722
     y: 21
     father: "main"
-    commands:
+    click:
         status:
             switchBoolean: "visible"
             page: "skills"
@@ -68,7 +68,7 @@ bagClose:
     x: 309
     y: 203
     father: "bag"
-    commands:
+    click:
         bag:
             visible: false
 
@@ -88,7 +88,7 @@ bagGold:
     father: "bag"
     page: "gold1"
     pages: ["gold1", "gold2", "gold3"]
-    commands:  # test switch gold
+    click:  # test switch gold
         bagGold:
             pageSwitch: +1
 
@@ -125,7 +125,7 @@ statusClose:
     x: 8
     y: 39
     father: "status"
-    commands:
+    click:
         status:
             visible: false
 
@@ -136,7 +136,7 @@ statusPageUp:
     x: 7
     y: 128
     father: "status"
-    commands:
+    click:
         status:
             pageSwitch: -1
 
@@ -147,7 +147,7 @@ statusPageDown:
     x: 7
     y: 187
     father: "status"
-    commands:
+    click:
         status:
             pageSwitch: +1
 
@@ -169,6 +169,7 @@ skills:
     res: 383
     x: 38
     y: 52
+    rtclick: "test"
 
 skillsPageUp:
     res: 398
@@ -176,7 +177,7 @@ skillsPageUp:
     x: 175
     y: 62
     father: "skills"
-    commands: "command1"  # test
+    click: "test"
 
 skillsPageDown:
     res: 396
@@ -184,6 +185,8 @@ skillsPageDown:
     x: 175
     y: 92
     father: "skills"
+    dblclick: "test"
+    rtclick: "test"
 
 
 equipments:
@@ -193,7 +196,7 @@ equipments:
     y: 52
     page: "equipmentsM"
     pages: ["equipmentsM", "equipmentsW"]
-    commands:
+    click:
         equipments:
             pageSwitch: +1
 
@@ -209,7 +212,7 @@ hpmp:
     father: "main"
     page: "hpmpBallEmpty"
     pages: ["hpBallEmpty", "hpmpBallEmpty"]
-    commands:
+    click:
         hpmp:
             pageSwitch: +1
 
@@ -219,8 +222,8 @@ hpBallEmpty:
 hpBallHpFull:
     res: 6
     father: "hpBallEmpty"
-    model: "hp"
-    controller: "ctrlRateMaxY"
+    model: "hp maxhp /"
+    view: "viewY"
 
 hpmpBallEmpty:
     res: 4
@@ -232,15 +235,15 @@ hpmpBallHpFull:
     res: 4
     resRect: [0, 0, 0.5, 1]
     father: "hpmpBallEmpty"
-    model: "hp"
-    controller: "ctrlRateMaxY"
+    model: "hp maxhp /"
+    view: "viewY"
 
 hpmpBallMpFull:
     res: 4
     resRect: [0.5, 0, 0.5, 1]
     father: "hpmpBallEmpty"
-    model: "mp"
-    controller: "ctrlRateMaxY"
+    model: "mp maxmp /"
+    view: "viewY"
 
 
 lv:
@@ -255,8 +258,8 @@ exp:
     x: 665
     y: 178
     father: "main"
-    model: "exp"
-    controller: "ctrlRateMaxW"
+    model: "exp maxexp /"
+    view: "viewW"
     texts: [
         src: "经验: {0}"
         model: "exp"
@@ -271,8 +274,8 @@ weight:
     x: 665
     y: 210
     father: "main"
-    model: "weight"
-    controller: "ctrlRateMaxW"
+    model: "weight maxweight /"
+    view: "viewW"
 
 
 
