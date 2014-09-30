@@ -21,7 +21,7 @@ equipButton:
     mouse:
         click:
             status:
-                switchBoolean: "visible"
+                ox: "visible"
                 page: "equipments"
 
 bagButton:
@@ -34,7 +34,7 @@ bagButton:
     mouse:
         click:
             bag:
-                switchBoolean: "visible"
+                ox: "visible"
 
 skillButton:
     res: 10
@@ -46,7 +46,7 @@ skillButton:
     mouse:
         click:
             status:
-                switchBoolean: "visible"
+                ox: "visible"
                 page: "skills"
 
 soundButton:
@@ -66,7 +66,7 @@ bag:
     draggable: true
     hotkeys:
         65:
-            switchBoolean: "visible"
+            ox: "visible"
 
 bagClose:
     res: 371
@@ -119,13 +119,13 @@ status:
     pages: ["equipments", "points", "miscellaneous", "skills"]
     hotkeys:
         81:
-            switchBoolean: "visible"
+            ox: "visible"
             page: "equipments"
         87:
-            switchBoolean: "visible"
+            ox: "visible"
             page: "skills"
         69:
-            switchBoolean: "visible"
+            ox: "visible"
 
 statusClose:
     res: 371
