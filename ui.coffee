@@ -1,6 +1,10 @@
 #!/usr/bin/env coffee
 config =
 
+debugText:
+    text:
+        src: "{0} {1} {2} {3}"
+        model: "hp mp exp weight"
 
 main:
     res: 1
@@ -14,10 +18,11 @@ equipButton:
     x: 643
     y: 61
     father: "main"
-    click:
-        status:
-            switchBoolean: "visible"
-            page: "equipments"
+    mouse:
+        click:
+            status:
+                switchBoolean: "visible"
+                page: "equipments"
 
 bagButton:
     res: 9
@@ -26,9 +31,10 @@ bagButton:
     x: 682
     y: 41
     father: "main"
-    click:
-        bag:
-            switchBoolean: "visible"
+    mouse:
+        click:
+            bag:
+                switchBoolean: "visible"
 
 skillButton:
     res: 10
@@ -37,10 +43,11 @@ skillButton:
     x: 722
     y: 21
     father: "main"
-    click:
-        status:
-            switchBoolean: "visible"
-            page: "skills"
+    mouse:
+        click:
+            status:
+                switchBoolean: "visible"
+                page: "skills"
 
 soundButton:
     res: 11
@@ -68,9 +75,10 @@ bagClose:
     x: 309
     y: 203
     father: "bag"
-    click:
-        bag:
-            visible: false
+    mouse:
+        click:
+            bag:
+                visible: false
 
 bagUse:
     res: 26
@@ -88,9 +96,10 @@ bagGold:
     father: "bag"
     page: "gold1"
     pages: ["gold1", "gold2", "gold3"]
-    click:  # test switch gold
-        bagGold:
-            pageSwitch: +1
+    mouse:
+        click:  # test switch gold
+            bagGold:
+                pageDelta: +1
 
 gold1:
     res: 27
@@ -125,9 +134,10 @@ statusClose:
     x: 8
     y: 39
     father: "status"
-    click:
-        status:
-            visible: false
+    mouse:
+        click:
+            status:
+                visible: false
 
 statusPageUp:
     res: 373
@@ -136,9 +146,10 @@ statusPageUp:
     x: 7
     y: 128
     father: "status"
-    click:
-        status:
-            pageSwitch: -1
+    mouse:
+        click:
+            status:
+                pageDelta: -1
 
 statusPageDown:
     res: 372
@@ -147,9 +158,10 @@ statusPageDown:
     x: 7
     y: 187
     father: "status"
-    click:
-        status:
-            pageSwitch: +1
+    mouse:
+        click:
+            status:
+                pageDelta: +1
 
 
 points:
@@ -169,7 +181,8 @@ skills:
     res: 383
     x: 38
     y: 52
-    rtclick: "test"
+    mouse:
+        rightClick: "test"
 
 skillsPageUp:
     res: 398
@@ -177,7 +190,8 @@ skillsPageUp:
     x: 175
     y: 62
     father: "skills"
-    click: "test"
+    mouse:
+        click: "test"
 
 skillsPageDown:
     res: 396
@@ -185,8 +199,9 @@ skillsPageDown:
     x: 175
     y: 92
     father: "skills"
-    dblclick: "test"
-    rtclick: "test"
+    mouse:
+        doubleClick: "test"
+        rightClick: "test"
 
 
 equipments:
@@ -196,9 +211,10 @@ equipments:
     y: 52
     page: "equipmentsM"
     pages: ["equipmentsM", "equipmentsW"]
-    click:
-        equipments:
-            pageSwitch: +1
+    mouse:
+        click:
+            equipments:
+                pageDelta: +1
 
 equipmentsM:
     res: 376
@@ -212,9 +228,10 @@ hpmp:
     father: "main"
     page: "hpmpBallEmpty"
     pages: ["hpBallEmpty", "hpmpBallEmpty"]
-    click:
-        hpmp:
-            pageSwitch: +1
+    mouse:
+        click:
+            hpmp:
+                pageDelta: +1
 
 hpBallEmpty:
     res: 5
@@ -260,13 +277,22 @@ exp:
     father: "main"
     model: "exp maxexp /"
     view: "viewW"
-    texts: [
-        src: "经验: {0}"
-        model: "exp"
+    mouse:
+        mouseOver:
+            expText:
+                visible: true
+        mouseOut:
+            expText:
+                visible: false
+
+expText:
+    father: "exp"
+    hidden: true
+    text:
+        src: "{0}  {1}"
+        model: "exp maxexp / weight"
         formatter: "currency"
-        x: 0
-        y: 0
-    ]
+        font: "font1"
 
 
 weight:
