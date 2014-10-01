@@ -25,11 +25,19 @@ types = {
 }
 
 defaults = {
-    str: "'???'",
+    str: "'xxx'",
     int: "0",
+    bool: "false",
     list: "[]",
     object: "{}",
-    bool: "false",
+}
+
+defines = {
+    str: "var",
+    int: "var",
+    bool: "var",
+    list: "const",
+    object: "const",
 }
 
 src = """
@@ -43,8 +51,11 @@ package mir  {
         public static const _:Player = new Player();
 
         {% for a, t in attributes %}
-        private var _{{ a }}:{{ types[t] }} = {{ defaults[t] }};
+
+        private {{ defines[t] }} _{{ a }}:{{ types[t] }} = {{ defaults[t] }};
+
         public function get {{ a }}():{{ types[t] }} { return _{{ a }}; }
+
         public function set {{ a }}(_:{{ types[t] }}):void {
             {% if t in (list, object) %}
             for (var k:String in _) {
@@ -55,6 +66,14 @@ package mir  {
             {% end %}
             dispatchEvent(new Event("_{{ a }}"));
         }
+
+        {% if t == int %}
+        public function set {{ a }}Delta(_:{{ types[t] }}):void {
+            _{{ a }} += _;
+            dispatchEvent(new Event("_{{ a }}"));
+        }
+        {% end %}
+
         {% end %}
 
         public function set ox(attr:String):void {
@@ -111,10 +130,14 @@ package mir  {
 """
 
 if __name__ == "__main__":
+    import re
     from tornado.template import Template
-    with open("Player.as", "w") as f:
-        f.write(Template(src).generate(
-            attributes=sorted(attributes.items()),
-            types=types,
-            defaults=defaults,
-        ).decode())
+
+    s = Template(src).generate(
+        attributes=sorted(attributes.items()),
+        types=types,
+        defaults=defaults,
+        defines=defines,
+    ).decode()
+    print(re.sub(r'\s+\n+', '\n', s))
+
