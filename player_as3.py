@@ -50,31 +50,49 @@ package mir  {
     public final class Player extends EventDispatcher {
         public static const _:Player = new Player();
 
-        {% for a, t in attributes %}
+    {% for a, t in attributes %}
 
         private {{ defines[t] }} _{{ a }}:{{ types[t] }} = {{ defaults[t] }};
 
         public function get {{ a }}():{{ types[t] }} { return _{{ a }}; }
 
         public function set {{ a }}(_:{{ types[t] }}):void {
-            {% if t in (list, object) %}
+
+        {% if t == list %}
+
             for (var k:String in _) {
                 _{{ a }}[k] = _[k];
             }
-            {% else %}
+
+        {% elif t == object %}
+
+            for (var k:String in _) {
+                if (_[k] === null) {
+                    delete _{{ a }}[k];
+                } else {
+                    _{{ a }}[k] = _[k];
+                }
+            }
+
+        {% else %}
+
             _{{ a }} = _;
-            {% end %}
+
+        {% end %}
+
             dispatchEvent(new Event("_{{ a }}"));
         }
 
         {% if t == int %}
+
         public function set {{ a }}Delta(_:{{ types[t] }}):void {
             _{{ a }} += _;
             dispatchEvent(new Event("_{{ a }}"));
         }
-        {% end %}
 
         {% end %}
+
+    {% end %}
 
         public function set ox(attr:String):void {
             this[attr] = !this[attr];

@@ -13,7 +13,7 @@ main:
 
 equipButton:
     res: 8
-    dummyRes: true
+    isDummy: true
     resOnClick: 8
     x: 643
     y: 61
@@ -26,7 +26,7 @@ equipButton:
 
 bagButton:
     res: 9
-    dummyRes: true
+    isDummy: true
     resOnClick: 9
     x: 682
     y: 41
@@ -38,7 +38,7 @@ bagButton:
 
 skillButton:
     res: 10
-    dummyRes: true
+    isDummy: true
     resOnClick: 10
     x: 722
     y: 21
@@ -51,7 +51,7 @@ skillButton:
 
 soundButton:
     res: 11
-    dummyRes: true
+    isDummy: true
     resOnClick: 11
     x: 764
     y: 11
@@ -70,7 +70,7 @@ bag:
 
 bagClose:
     res: 371
-    dummyRes: true
+    isDummy: true
     resOnClick: 371
     x: 309
     y: 203
@@ -82,7 +82,7 @@ bagClose:
 
 bagUse:
     res: 26
-    dummyRes: true
+    isDummy: true
     resOnClick: 26
     x: 254
     y: 183
@@ -90,7 +90,7 @@ bagUse:
 
 bagGold:
     res: 27
-    dummyRes: true
+    isDummy: true
     x: 10
     y: 190
     father: "bag"
@@ -129,7 +129,7 @@ status:
 
 statusClose:
     res: 371
-    dummyRes: true
+    isDummy: true
     resOnClick: 371
     x: 8
     y: 39
@@ -141,7 +141,7 @@ statusClose:
 
 statusPageUp:
     res: 373
-    dummyRes: true
+    isDummy: true
     resOnClick: 373
     x: 7
     y: 128
@@ -153,7 +153,7 @@ statusPageUp:
 
 statusPageDown:
     res: 372
-    dummyRes: true
+    isDummy: true
     resOnClick: 372
     x: 7
     y: 187
@@ -166,7 +166,7 @@ statusPageDown:
 
 points:
     res: 382
-    dummyRes: true  # show original status
+    isDummy: true  # show original status
     x: 38
     y: 52
 
@@ -206,7 +206,7 @@ skillsPageDown:
 
 equipments:
     res: 376
-    dummyRes: true
+    isDummy: true
     x: 38
     y: 52
     page: "equipmentsM"
@@ -244,7 +244,7 @@ hpBallHpFull:
 
 hpmpBallEmpty:
     res: 4
-    dummyRes: true
+    isDummy: true
     x: 2
     y: 1
 
@@ -289,7 +289,7 @@ expText:
     father: "exp"
     hidden: true
     text:
-        src: "{0}  {1}"
+        src: "中文{0}  {1}"
         model: "exp maxexp / weight"
         formatter: "currency"
         font: "font1"
