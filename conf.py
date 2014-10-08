@@ -50,7 +50,7 @@ def render_monster(name, start, tpl, tpl_mask=(True, True, True, True, True, Fal
         j += start
         for d in range(DIRECTIONS):
             if tpl_mask[i]:
-                lst.append((j, j + k, "{}{}{:x}".format(name, i, d)))
+                lst.append((list(range(i, i + k)), "{}{}{:x}".format(name, i, d)))
             j += k
     return lst
 
@@ -61,7 +61,7 @@ def render_human(i, n):
     for _ in range(n):
         for j, k in human_steps:
             for d in range(DIRECTIONS):
-                lst.append((i, i + k, "{}{:x}".format(id, d)))
+                lst.append((list(range(i, i + k)), "{}{:x}".format(id, d)))
                 i += j
             id += 1
     return lst

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 attributes = dict(
+    cooldown=bool,
     name=str,
     hp=int,
     maxhp=int,

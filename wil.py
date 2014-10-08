@@ -46,9 +46,9 @@ def persist_to_bins(lst, dir, config=None):
                 w, h, x, y, colors = x
                 deflated_save(pack_whxy(w, h, x, y) + colors, fmt_output(i))
     else:
-        for begin, end, name in config:
+        for frames, name in config:
             data = []
-            for i in range(begin, end):
+            for i in frames:
                 if lst[i] is None:
                     break
                 w, h, x, y, colors = lst[i]
@@ -86,12 +86,14 @@ def persist_bmp256(fn, w, h, x, y, colors):
 
 
 def main():
+    persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
+    return
+
     for wil in sys.argv[1:]:
         persist_bmps(export(wil), os.path.join("bmp", os.path.basename(wil)[:-4]))
 
     for k, v in conf.monsters.items():
         persist_to_bins(export("wil/{}.wil".format(k)), "tmp/monsters", v)
-    return
     persist_to_bins(export("wil/Magic.wil"), "tmp/magics", conf.magics)
     persist_to_bins(export("wil/Magic2.wil"), "tmp/magics", conf.magics2)
     persist_to_bins(export("wil/Hum.wil"), "tmp/bodies", conf.bodies)
