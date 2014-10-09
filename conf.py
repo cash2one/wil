@@ -50,7 +50,7 @@ def render_monster(name, start, tpl, tpl_mask=(True, True, True, True, True, Fal
         j += start
         for d in range(DIRECTIONS):
             if tpl_mask[i]:
-                lst.append((list(range(i, i + k)), "{}{}{:x}".format(name, i, d)))
+                lst.append((i, i + k, "{}{}{:x}".format(name, i, d)))
             j += k
     return lst
 
@@ -61,7 +61,7 @@ def render_human(i, n):
     for _ in range(n):
         for j, k in human_steps:
             for d in range(DIRECTIONS):
-                lst.append((list(range(i, i + k)), "{}{:x}".format(id, d)))
+                lst.append((i, i + k, "{}{:x}".format(id, d)))
                 i += j
             id += 1
     return lst
@@ -127,6 +127,26 @@ magics = [
 ] + [
     (i, i + 3, "3041{:x}".format((i - 1160) // 10))
     for i in range(1160, 1320, 10)
+] + [
+    (1820 + 90 * i + j, 1820 + 90 * i + j + 6, "102{}{:x}".format(i, j // 10))
+    for i in range(4)
+    for j in range(0, 80, 10)
+] + [
+    (2190 + 90 * i + j, 2190 + 90 * i + j + 6, "103{}{:x}".format(i, j // 10))
+    for i in range(4)
+    for j in range(0, 80, 10)
+] + [
+    (2560 + 90 * i + j, 2560 + 90 * i + j + 6, "104{}{:x}".format(i, j // 10))
+    for i in range(4)
+    for j in range(0, 80, 10)
+] + [
+    (3300 + 90 * i + j, 3300 + 90 * i + j + 6, "106{}{:x}".format(i, j // 10))
+    for i in range(4)
+    for j in range(0, 80, 10)
+] + [
+    (3660 + 90 * i + j, 3660 + 90 * i + j + 6, "199{}{:x}".format(i, j // 10))
+    for i in range(2)
+    for j in range(0, 80, 10)
 ]
 
 magics2 = [
