@@ -2,13 +2,13 @@
 config =
 
 main:
-    resources: [1]
+    res: 1
     x: 0
     y: 349
     transparent: true
     children:
         ball:
-            resources: [-5]
+            res: -5
             x: 38
             y: 90
             events:
@@ -18,35 +18,35 @@ main:
             pages:
                 hp:
                     pageIndex: 0
-                    resources: [5]
+                    res: 5
                     children:
                         hpfull:
-                            resources: [6]
+                            res: 6
                             model: "hp maxhp /"
                             view: "viewY"
                 hpmp:
                     pageIndex: 1
-                    resources: [-4]
+                    res: -4
                     x: 2
                     y: 1
                     children:
                         hpfull:
-                            resources: [4]
+                            res: 4
                             rectW: 0.5
                             model: "hp maxhp /"
                             view: "viewY"
                         mpfull:
-                            resources: [4]
+                            res: 4
                             rectX: 0.5
                             rectW: 0.5
                             model: "mp maxmp /"
                             view: "viewY"
         lv:  #todo
-            resources: [30]
+            res: 30
             x: 665
             y: 147
         exp:
-            resources: [7]
+            res: 7
             x: 665
             y: 178
             model: "exp maxexp /"
@@ -59,13 +59,13 @@ main:
                     exp_txt:
                         visible: false
         weight:
-            resources: [7]
+            res: 7
             x: 665
             y: 211
             model: "weight maxweight /"
             view: "viewW"
         equipsButton:
-            resources: [-8, 8]
+            res: [-8, 8]
             x: 643
             y: 61
             events:
@@ -74,7 +74,7 @@ main:
                         ox: "visible"
                         page: "equipments"
         bagButton:
-            resources: [-9, 9]
+            res: [-9, 9]
             x: 682
             y: 41
             events:
@@ -82,7 +82,7 @@ main:
                     bag:
                         ox: "visible"
         skillsButton:
-            resources: [-10, 10]
+            res: [-10, 10]
             x: 722
             y: 21
             events:
@@ -91,12 +91,12 @@ main:
                         ox: "visible"
                         page: "skills"
         soundButton:
-            resources: [-11, 11]
+            res: [-11, 11]
             x: 764
             y: 11
 
 bag:
-    resources: [3]
+    res: 3
     x: 20
     y: 20
     transparent: true
@@ -107,7 +107,7 @@ bag:
             ox: "visible"
     children:
         close:
-            resources: [-371, 371]
+            res: [-371, 371]
             x: 309
             y: 203
             events:
@@ -115,11 +115,11 @@ bag:
                     bag:
                         visible: false
         use:
-            resources: [-26, 26]
+            res: [-26, 26]
             x: 254
             y: 183
         gold:
-            resources: [-27]
+            res: -27
             x: 10
             y: 190
             events:
@@ -129,16 +129,16 @@ bag:
             pages:
                 gold1:
                     pageIndex: 0
-                    resources: [27]
+                    res: 27
                 gold2:
                     pageIndex: 1
-                    resources: [28]
+                    res: 28
                 gold3:
                     pageIndex: 2
-                    resources: [29]
+                    res: 29
 
 status:
-    resources: [370]
+    res: 370
     x: 565
     y: 10
     transparent: true
@@ -155,7 +155,7 @@ status:
             ox: "visible"
     children:
         close:
-            resources: [-371, 371]
+            res: [-371, 371]
             x: 8
             y: 39
             events:
@@ -163,7 +163,7 @@ status:
                     status:
                         visible: false
         up:
-            resources: [-373, 373]
+            res: [-373, 373]
             x: 7
             y: 128
             events:
@@ -171,7 +171,7 @@ status:
                     status:
                         pageDelta: -1
         down:
-            resources: [-372, 372]
+            res: [-372, 372]
             x: 7
             y: 187
             events:
@@ -181,30 +181,30 @@ status:
     pages:
         points:
             pageIndex: 0
-            resources: [-382]
+            res: -382
             x: 38
             y: 52
         miscellaneous:
             pageIndex: 1
-            resources: [382]
+            res: 382
             x: 38
             y: 52
         skills:
             pageIndex: 2
-            resources: [383]
+            res: 383
             x: 38
             y: 52
             events:
                 rightClick: "test"
             children:
                 up:
-                    resources: [398, 399]
+                    res: [398, 399]
                     x: 175
                     y: 62
                     events:
                         click: "test"
                 down:
-                    resources: [396, 397]
+                    res: [396, 397]
                     x: 175
                     y: 92
                     events:
@@ -212,7 +212,7 @@ status:
                         rightClick: "test"
         equipments:
             pageIndex: 3
-            resources: [-376]
+            res: -376
             x: 38
             y: 52
             events:
@@ -222,10 +222,10 @@ status:
             pages:
                 equipmentsM:
                     pageIndex: 0
-                    resources: [376]
+                    res: 376
                 equipmentsW:
                     pageIndex: 1
-                    resources: [377]
+                    res: 377
 
 
 
