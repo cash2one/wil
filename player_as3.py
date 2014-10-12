@@ -81,14 +81,14 @@ package mir  {
 
         {% end %}
 
-            dispatchEvent(new Event("_{{ a }}"));
+            dispatchEvent(new Event("{{ a }}"));
         }
 
         {% if t == int %}
 
         public function set {{ a }}Delta(_:{{ types[t] }}):void {
             _{{ a }} += _;
-            dispatchEvent(new Event("_{{ a }}"));
+            dispatchEvent(new Event("{{ a }}"));
         }
 
         {% end %}
@@ -133,7 +133,7 @@ package mir  {
                         commands.push(op);
                     } else {
                         commands.push(cmd);
-                        addEventListener("_" + cmd, function(e:Event):void {
+                        addEventListener(cmd, function(e:Event):void {
                             view.apply(null, model().slice(0, view.length || 8));  // args max 8
                         });
                     }
