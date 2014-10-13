@@ -54,7 +54,7 @@ package mir  {
     import mx.utils.StringUtil;
 
     public final class Player extends EventDispatcher {
-        public static const _:Player = new Player();
+        public static const self:Player = new Player();
 
     {% for a, t in attributes %}
 
@@ -105,7 +105,7 @@ package mir  {
         }
 
         public function bindView(notation:String, view:Function):void {
-            const self:Player = this;
+            const player:Player = this;
             const commands:Array = [];
 
             function model():Array {
@@ -116,7 +116,7 @@ package mir  {
                     if (x is Number) {
                         stack.push(x);
                     } else if (x is String) {
-                        stack.push(self[x]);
+                        stack.push(player[x]);
                     } else {
                         const args:Array = [];
                         var n:int = x.length;
@@ -129,16 +129,16 @@ package mir  {
                 return stack;
             }
 
-            var cmd:String, n:Number, op:Function;
-            for each (cmd in StringUtil.trim(notation).split(/\s+/)){
-                n = Number(cmd);
+            var token:String, n:Number, op:Function;
+            for each (token in StringUtil.trim(notation).split(/\s+/)){
+                n = Number(token);
                 if (isNaN(n)) {
-                    op = Calc.operators[cmd];
+                    op = Calc.operators[token];
                     if (op) {
                         commands.push(op);
                     } else {
-                        commands.push(cmd);
-                        addEventListener(cmd, function(e:Event):void {
+                        commands.push(token);
+                        addEventListener(token, function(e:Event):void {
                             view.apply(null, model().slice(0, view.length || 8));  // args max 8
                         });
                     }
