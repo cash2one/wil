@@ -14,6 +14,11 @@ main:
                 click:
                     main_ball:
                         pageDelta: +1
+            children:
+                hpmp:
+                    y: 100
+                    text: "hp:{0} MP:{1}"
+                    model: "hp mp"
             pages:
                 hp:
                     pageIndex: 0
@@ -41,7 +46,7 @@ main:
                             model: "mp maxmp /"
                             view: "y"
         lv:
-            x: 665
+            x: 666
             y: 147
             model: "lv"
             view: "digit"
@@ -49,10 +54,10 @@ main:
                 0:
                     res: [30,31,32,33,34,35,36,37,38,39]
                 1:
-                    x: 10
+                    x: 8
                     res: [30,31,32,33,34,35,36,37,38,39]
                 2:
-                    x: 20
+                    x: 16
                     res: [30,31,32,33,34,35,36,37,38,39]
         exp:
             res: 7
@@ -155,18 +160,17 @@ status:
     draggable: true
     hotkeys:
         81:
-            ox: "visible"
-            page: "equipments"
             player:
                 hpDelta: +1
-                mpDelta: +1
+                mpDelta: -1
                 lvDelta: +1
+                exp: 1234
         87:
-            ox: "visible"
+            #ox: "visible"
             page: "skills"
             player:
                 hpDelta: -1
-                mpDelta: -1
+                mpDelta: +1
         69:
             ox: "visible"
     children:
@@ -218,14 +222,80 @@ status:
                     x: 175
                     y: 62
                     events:
-                        click: "test"
+                        click:
+                            status_pages_skills:
+                                pageDelta: +1
                 down:
                     res: [396, 397]
                     x: 175
                     y: 92
                     events:
-                        doubleClick: "test"
-                        rightClick: "test"
+                        click:
+                            status_pages_skills:
+                                pageDelta: -1
+            pages:  # test
+                0:
+                    pageIndex: 0
+                    x: 8
+                    children:
+                        0:
+                            y: 7
+                            magic_icons: [0, 1]
+                            children:
+                                name:
+                                    x: 40
+                                    y: -2
+                                    text: "火球术"
+                                lvTag:
+                                    res: 112
+                                    x: 42
+                                    y: 18
+                                expTag:
+                                    res: 111
+                                    x: 76
+                                    y: 18
+                                lv:
+                                    x: 58
+                                    y: 15
+                                    text: "{0}"
+                                    model: "lv"
+                                exp:
+                                    x: 96
+                                    y: 15
+                                    text: "{0}/{1}"
+                                    model: "exp 10000"
+                                fn:
+                                    res: 248
+                                    x: 130
+                                    y: -2
+                        1:
+                            y: 44
+                            magic_icons: [2, 3]
+                        2:
+                            y: 82
+                            magic_icons: [2, 3]
+                        3:
+                            y: 119
+                            magic_icons: [2, 3]
+                        4:
+                            y: 156
+                            magic_icons: [2, 3]
+                1:
+                    pageIndex: 1
+                    x: 8
+                    children:
+                        0:
+                            y: 7
+                            magic_icons: [10, 11]
+                2:
+                    pageIndex: 2
+                    x: 8
+                    children:
+                        0:
+                            y: 7
+                            magic_icons: [12, 13]
+
+
         equipments:
             pageIndex: 3
             res: -376
