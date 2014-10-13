@@ -3,11 +3,13 @@
 attributes = dict(
     cooldown=bool,
     name=str,
+    number=float,
+    lv=int,
+    exp=int,
     hp=int,
     maxhp=int,
     mp=int,
     maxmp=int,
-    exp=int,
     maxexp=int,
     weight=int,
     maxweight=int,
@@ -19,15 +21,17 @@ attributes = dict(
 
 types = {
     str: "String",
-    int: "Number",
+    int: "int",
+    float: "Number",
+    bool: "Boolean",
     list: "Object",
     object: "Object",
-    bool: "Boolean",
 }
 
 defaults = {
-    str: "'xxx'",
+    str: '"foo"',
     int: "0",
+    float: "0",
     bool: "false",
     list: "[]",
     object: "{}",
@@ -36,6 +40,7 @@ defaults = {
 defines = {
     str: "var",
     int: "var",
+    float: "var",
     bool: "var",
     list: "const",
     object: "const",
@@ -84,7 +89,7 @@ package mir  {
             dispatchEvent(new Event("{{ a }}"));
         }
 
-        {% if t == int %}
+        {% if t in {int, float} %}
 
         public function set {{ a }}Delta(_:{{ types[t] }}):void {
             _{{ a }} += _;
@@ -159,4 +164,3 @@ if __name__ == "__main__":
         defines=defines,
     ).decode()
     print(re.sub(r'\s+\n+', '\n', s))
-

@@ -3,7 +3,6 @@ config =
 
 main:
     res: 1
-    x: 0
     y: 349
     transparent: true
     children:
@@ -23,7 +22,7 @@ main:
                         hpfull:
                             res: 6
                             model: "hp maxhp /"
-                            view: "viewY"
+                            view: "y"
                 hpmp:
                     pageIndex: 1
                     res: -4
@@ -34,23 +33,33 @@ main:
                             res: 4
                             rectW: 0.5
                             model: "hp maxhp /"
-                            view: "viewY"
+                            view: "y"
                         mpfull:
                             res: 4
                             rectX: 0.5
                             rectW: 0.5
                             model: "mp maxmp /"
-                            view: "viewY"
-        lv:  #todo
-            res: 30
+                            view: "y"
+        lv:
             x: 665
             y: 147
+            model: "lv"
+            view: "digit"
+            children:
+                0:
+                    res: [30,31,32,33,34,35,36,37,38,39]
+                1:
+                    x: 10
+                    res: [30,31,32,33,34,35,36,37,38,39]
+                2:
+                    x: 20
+                    res: [30,31,32,33,34,35,36,37,38,39]
         exp:
             res: 7
             x: 665
             y: 178
             model: "exp maxexp /"
-            view: "viewW"
+            view: "w"
             events:
                 mouseOver:
                     exp_txt:
@@ -63,7 +72,7 @@ main:
             x: 665
             y: 211
             model: "weight maxweight /"
-            view: "viewW"
+            view: "w"
         equipsButton:
             res: [-8, 8]
             x: 643
@@ -148,9 +157,16 @@ status:
         81:
             ox: "visible"
             page: "equipments"
+            player:
+                hpDelta: +1
+                mpDelta: +1
+                lvDelta: +1
         87:
             ox: "visible"
             page: "skills"
+            player:
+                hpDelta: -1
+                mpDelta: -1
         69:
             ox: "visible"
     children:
