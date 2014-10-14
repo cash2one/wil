@@ -17,7 +17,7 @@ main:
             children:
                 hpmp:
                     y: 100
-                    text: "hp:{0} MP:{1}"
+                    text: "HP:{0} MP:{1}"
                     model: "hp mp"
             pages:
                 hp:
@@ -166,13 +166,12 @@ status:
                 lvDelta: +1
                 exp: 1234
         87:
-            #ox: "visible"
-            page: "skills"
             player:
                 hpDelta: -1
                 mpDelta: +1
         69:
             ox: "visible"
+            page: "skills"
     children:
         close:
             res: [-371, 371]
@@ -224,7 +223,7 @@ status:
                     events:
                         click:
                             status_pages_skills:
-                                pageDelta: +1
+                                pageDelta: -1
                 down:
                     res: [396, 397]
                     x: 175
@@ -232,70 +231,7 @@ status:
                     events:
                         click:
                             status_pages_skills:
-                                pageDelta: -1
-            pages:  # test
-                0:
-                    pageIndex: 0
-                    x: 8
-                    children:
-                        0:
-                            y: 7
-                            magic_icons: [0, 1]
-                            children:
-                                name:
-                                    x: 40
-                                    y: -2
-                                    text: "火球术"
-                                lvTag:
-                                    res: 112
-                                    x: 42
-                                    y: 18
-                                expTag:
-                                    res: 111
-                                    x: 76
-                                    y: 18
-                                lv:
-                                    x: 58
-                                    y: 15
-                                    text: "{0}"
-                                    model: "lv"
-                                exp:
-                                    x: 96
-                                    y: 15
-                                    text: "{0}/{1}"
-                                    model: "exp 10000"
-                                fn:
-                                    res: 248
-                                    x: 130
-                                    y: -2
-                        1:
-                            y: 44
-                            magic_icons: [2, 3]
-                        2:
-                            y: 82
-                            magic_icons: [2, 3]
-                        3:
-                            y: 119
-                            magic_icons: [2, 3]
-                        4:
-                            y: 156
-                            magic_icons: [2, 3]
-                1:
-                    pageIndex: 1
-                    x: 8
-                    children:
-                        0:
-                            y: 7
-                            magic_icons: [10, 11]
-                2:
-                    pageIndex: 2
-                    x: 8
-                    children:
-                        0:
-                            y: 7
-                            magic_icons: [12, 13]
-
-
+                                pageDelta: +1
         equipments:
             pageIndex: 3
             res: -376
@@ -312,6 +248,115 @@ status:
                 equipmentsW:
                     pageIndex: 1
                     res: 377
+
+switchFn:
+    res: 229
+    x: 212
+    y: 235
+    draggable: true
+    hidden: true
+    children:
+        icon:
+            x: 51
+            y: 28
+            lazy: true
+        0:
+            res: [-231, 231, 230]
+            x: 299
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 0
+        1:
+            res: [-232, 232, 233]
+            x: 34
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 1
+        2:
+            res: [-234, 234, 235]
+            x: 66
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 2
+        3:
+            res: [-236, 236, 237]
+            x: 98
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 3
+        4:
+            res: [-238, 238, 239]
+            x: 130
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 4
+        5:
+            res: [-240, 240, 241]
+            x: 171
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 5
+        6:
+            res: [-242, 242, 243]
+            x: 203
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 6
+        7:
+            res: [-244, 244, 245]
+            x: 235
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 7
+        8:
+            res: [-246, 246, 247]
+            x: 267
+            y: 83
+            model: "switchFnTo"
+            view: "fnRes2"
+            events:
+                click:
+                    player:
+                        switchFnTo: 8
+        ok:
+            res: [361, 362]
+            x: 220
+            y: 129
+            events:
+                click: "switchFnSubmit"
+
 
 
 

@@ -3,20 +3,23 @@
 attributes = dict(
     cooldown=bool,
     name=str,
-    number=float,
+    sex=bool,  # man false, woman true
     lv=int,
-    exp=int,
     hp=int,
     maxhp=int,
     mp=int,
     maxmp=int,
+    exp=int,
     maxexp=int,
     weight=int,
     maxweight=int,
     bag=list,
     friends=list,
     tasks=object,
-    happy=bool,
+    skills=list,
+
+    # client only
+    switchFnTo=int,
 )
 
 types = {
@@ -111,46 +114,57 @@ package mir  {
             function model():Array {
                 /** copy from Calc.rpn */
                 const stack:Array = [];
-                var x:*, a:Number, b:Number;
+
+                var x:*;
+                var key:String, attr:Object;
+                var args:Array, n:int;
+
                 for each (x in commands){
                     if (x is Number) {
                         stack.push(x);
-                    } else if (x is String) {
-                        stack.push(player[x]);
-                    } else {
-                        const args:Array = [];
-                        var n:int = x.length;
+                    } else if (x is Array) {
+                        attr = player;
+                        for each (key in x) {
+                            attr = attr[key];
+                        }
+                        stack.push(attr);
+                    } else {  // Function
+                        args = [];
+                        n = x.length;
                         while (n--) {
                             args.unshift(stack.pop());
                         }
                         stack.push(x.apply(null, args));
                     }
                 }
+
                 return stack;
             }
 
-            var token:String, n:Number, op:Function;
+            var token:String, n:Number, op:Function, attrs:Array;
             for each (token in StringUtil.trim(notation).split(/\s+/)){
                 n = Number(token);
                 if (isNaN(n)) {
                     op = Calc.operators[token];
-                    if (op) {
+                    if (op) {  // Function
                         commands.push(op);
-                    } else {
-                        commands.push(token);
-                        addEventListener(token, function(e:Event):void {
+                    } else {  // Array (Strings in it)
+                        attrs = token.split(".");
+                        addEventListener(attrs[0], function(e:Event):void {
                             view.apply(null, model().slice(0, view.length || 8));  // args max 8
                         });
+                        commands.push(attrs);
                     }
-                } else {
+                } else {  // Number
                     commands.push(n);
                 }
             }
         }
+        // END bindView
+
 
     }
 }
-
 """
 
 if __name__ == "__main__":
