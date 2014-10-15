@@ -17,6 +17,10 @@ attributes = dict(
     friends=list,
     tasks=object,
     skills=list,
+    shoplist=list,
+
+    # client only
+    #
 )
 
 types = {

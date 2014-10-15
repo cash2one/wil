@@ -108,6 +108,17 @@ main:
             res: [-11, 11]
             x: 764
             y: 11
+            events:
+                click:
+                    npc:
+                        visible: true
+                    npc_buy:
+                        visible: true
+                    npc_sell:
+                        visible: true
+                    bag:
+                        x: 400
+                        y: 64
 
 bag:
     res: 3
@@ -160,13 +171,14 @@ status:
     draggable: true
     hotkeys:
         81:
-            player:
+            P:
                 hpDelta: +1
                 mpDelta: -1
                 lvDelta: +1
                 exp: 1234
+                shoplist: [[10001, "物品", 100, 3, "desc"]]
         87:
-            player:
+            P:
                 hpDelta: -1
                 mpDelta: +1
         69:
@@ -304,6 +316,247 @@ switchFn:
             y: 129
             events:
                 click: "switchFnSubmit"
+
+npc:
+    res: 384
+    hidden: true
+    children:
+        close:
+            x: 399
+            y: 1
+            res: [-371, 371]
+            events:
+                click:
+                    npc:
+                        visible: false
+        buy:
+            res: 385
+            y: 176
+            events:
+                mouseOut:
+                    npc_buy_detail:
+                        visible: false
+            children:
+                close:
+                    res: [-371, 371]
+                    x: 291
+                    events:
+                        click:
+                            npc_buy:
+                                visible: false
+                ok:
+                    res: [-386, 386]
+                    x: 215
+                    y: 171
+                left:
+                    x: 43
+                    y: 175
+                    res: [-388, 388]
+                right:
+                    x: 90
+                    y: 175
+                    res: [-387, 387]
+                head:
+                    x: 20
+                    y: 9
+                    text: "物品列表            价格         持久"
+                detail:
+                    x: 290
+                    text: "todo detail {0}"
+                0:
+                    y: 29
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}              -"
+                            model: "shoplist.0.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.0.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.0.3"
+                1:
+                    y: 42
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.1.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.1.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.1.3"
+                2:
+                    y: 55
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.2.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.2.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.2.3"
+                3:
+                    y: 68
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.3.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.3.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.3.3"
+                4:
+                    y: 81
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.4.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.4.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.4.3"
+                5:
+                    y: 94
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.5.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.5.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.5.3"
+                6:
+                    y: 107
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.6.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.6.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.6.3"
+                7:
+                    y: 120
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.7.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.7.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.7.3"
+                8:
+                    y: 133
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.8.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.8.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.8.3"
+                9:
+                    y: 146
+                    events:
+                        click: "shopSelect"
+                    children:
+                        name:
+                            x: 20
+                            text: "{0}"
+                            model: "shoplist.9.1"
+                        gold:
+                            x: 155
+                            text: "{0}"
+                            model: "shoplist.9.2"
+                        durability:
+                            x: 245
+                            text: "{0}"
+                            model: "shoplist.9.3"
+        sell:
+            res: 392
+            x: 260
+            y: 176
+            #hidden: true
+            children:
+                close:
+                    res: [-371, 371]
+                    x: 115
+                    events:
+                        click:
+                            npc_sell:
+                                visible: false
+                ok:
+                    res: [-393, 393]
+                    x: 85
+                    y: 150
+                    events:
+                        click: "sell"
+                gold:
+                    x: 4
+                    y: 4
+                    text: "{0}"
+
 
 
 
