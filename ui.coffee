@@ -264,8 +264,7 @@ status:
 switchFn:
     res: 229
     x: 212
-    y: 235
-    draggable: true
+    y: 220
     hidden: true
     events:
         click: "highlightFn"
