@@ -17,9 +17,6 @@ attributes = dict(
     friends=list,
     tasks=object,
     skills=list,
-
-    # client only
-    switchFnTo=int,
 )
 
 types = {

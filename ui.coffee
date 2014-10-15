@@ -255,6 +255,8 @@ switchFn:
     y: 235
     draggable: true
     hidden: true
+    events:
+        click: "highlightFn"
     children:
         icon:
             x: 51
@@ -264,92 +266,38 @@ switchFn:
             res: [-231, 231, 230]
             x: 299
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 0
         1:
             res: [-232, 232, 233]
             x: 34
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 1
         2:
             res: [-234, 234, 235]
             x: 66
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 2
         3:
             res: [-236, 236, 237]
             x: 98
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 3
         4:
             res: [-238, 238, 239]
             x: 130
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 4
         5:
             res: [-240, 240, 241]
             x: 171
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 5
         6:
             res: [-242, 242, 243]
             x: 203
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 6
         7:
             res: [-244, 244, 245]
             x: 235
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 7
         8:
             res: [-246, 246, 247]
             x: 267
             y: 83
-            model: "switchFnTo"
-            view: "fnRes2"
-            events:
-                click:
-                    player:
-                        switchFnTo: 8
         ok:
             res: [361, 362]
             x: 220
