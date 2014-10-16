@@ -176,7 +176,6 @@ status:
                 mpDelta: -1
                 lvDelta: +1
                 exp: 1234
-                shoplist: [[10001, "物品", 100, 3, "desc"]]
         87:
             P:
                 hpDelta: -1
@@ -360,8 +359,19 @@ npc:
                     y: 9
                     text: "物品列表            价格         持久"
                 detail:
-                    x: 290
-                    text: "todo detail {0}"
+                    x: 293
+                    children:
+                        0:
+                            text: "{0}"
+                        1:
+                            y: 13
+                            text: "{0}"
+                        2:
+                            y: 26
+                            text: "{0}"
+                        3:
+                            y: 39
+                            text: "{0}"
                 0:
                     y: 29
                     events:
@@ -369,7 +379,7 @@ npc:
                     children:
                         name:
                             x: 20
-                            text: "{0}              -"
+                            text: "{0}"
                             model: "shoplist.0.1"
                         gold:
                             x: 155
