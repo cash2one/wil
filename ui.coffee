@@ -176,6 +176,7 @@ status:
                 mpDelta: -1
                 lvDelta: +1
                 exp: 1234
+                shoplist: []
         87:
             P:
                 hpDelta: -1
